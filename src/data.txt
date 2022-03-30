@@ -1,25 +1,5 @@
-<template>
- <div class="ctr">
-     <transition name="fade" mode="out-in">
-  <Question v-if="questionsAnswered < questions.length" :questions="questions" :questionsAnswered="questionsAnswered" @question-answered="questionAnswered" />
-  <Result v-else :results="results" :totalCorrect="totalCorrect" />
-   </transition><button type="button" @click.prevent="reset" v-if="questionsAnswered === questions.length"  class="reset-btn">Reset</button>
-</div>
-</template>
-
-<script>
-import Question from './components/question.vue'
-import Result from './components/result.vue'
-export default {
-  name: 'App',
-  components: {
-    Question,Result
-  },
-  data(){
-    return{
-      questionsAnswered:0,
-      totalCorrect:0,
-      questions: [
+{
+    questions: [
         {
             q: 'What is 2 + 2?', 
             answers: [
@@ -94,32 +74,4 @@ export default {
             desc: "Studying has definitely paid off for you!"
         }
     ]
-    }
-  },
-   methods:{
-      questionAnswered(is_correct){
-         if(is_correct){
-           this.totalCorrect++;
-         }
-         this.questionsAnswered++;
-      },
-      reset(){
-          this.questionsAnswered = 0;
-          this.totalCorrect = 0;
-      }
-  }
 }
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-
-</style>
